@@ -1,7 +1,8 @@
 {
   "imports": {},
   "tasks": {
-    "start": "deno run --allow-net --allow-env src/index.ts"
+    "start": "deno run --allow-net --allow-env src/index.ts",
+    "dev": "deno run --allow-net --allow-env --watch=src src/index.ts"
   },
   "fmt": {
     "files": {
@@ -11,8 +12,8 @@
     },
     "options": {
       "useTabs": true,
-      "lineWidth": 140,
-      "indentWidth": 4,
+      "lineWidth": 120,
+      "indentWidth": 2,
       "singleQuote": true,
       "proseWrap": "preserve"
     }
@@ -21,11 +22,6 @@
     "files": {
       "include": [
         "src/"
-      ]
-    },
-    "rules": {
-      "tags": [
-        "recommended"
       ]
     }
   }
