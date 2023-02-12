@@ -1,7 +1,7 @@
 import { serve } from 'https://deno.land/std@0.176.0/http/server.ts';
 import { Redis } from 'https://deno.land/x/upstash_redis@v1.19.3/mod.ts';
 import { Query } from 'https://deno.land/x/sql_builder@v1.9.2/mod.ts';
-import { connect } from '@planetscale/database';
+import { connect } from 'npm:@planetscale/database@^1.4';
 
 const port = parseInt(Deno.env.get('PORT') ?? '8000');
 const redis = Redis.fromEnv();
