@@ -1,7 +1,6 @@
 import { serve } from 'https://deno.land/std@0.176.0/http/server.ts';
 import { Redis } from 'https://deno.land/x/upstash_redis@v1.19.3/mod.ts';
 import { Query } from 'https://deno.land/x/sql_builder@v1.9.2/mod.ts';
-// import { Client } from 'https://deno.land/x/mysql@v2.11.0/mod.ts';
 import { connect } from 'npm:@planetscale/database@^1.4';
 
 const port = parseInt(Deno.env.get('PORT') ?? '8000');
@@ -12,14 +11,6 @@ const config = {
 	password: Deno.env.get('PASSWORD'),
 };
 const conn = connect(config);
-
-// const client = await new Client().connect({
-
-// 	db: 'test',
-// 	username: 'egcc3lfseibcebik60gq',
-// 	hostname: 'eu-central.connect.psdb.cloud',
-// 	password: 'pscale_pw_BQuL7bR0u2MhDdFsiClAN4YL3nuC3sUFtsLsKMz4Qbw',
-// });
 
 serve(async (_req) => {
 	// Redis
