@@ -24,21 +24,24 @@ serve(async (_req) => {
 
 	performance.measure('redis-set');
 	await redis.set('foo', crypto.randomUUID());
-	const tr = performance.measure('redis-set');
+	const set1 = performance.measure('redis-set');
 
 	performance.measure('redis-read');
 	await redis.get<string>('foo');
-	const rr = performance.measure('redis-read');
+	const read1 = performance.measure('redis-read');
 
 	performance.measure('redis-read-2');
 	await redis.get<string>('foo');
-	const rrr = performance.measure('redis-read-2');
+	const read2 = performance.measure('redis-read-2');
 
 	performance.measure('planetscale');
 	await conn.execute(product);
-	const pr = performance.measure('planetscale');
+	const select1 = performance.measure('planetscale');
 
-	return new Response(JSON.stringify({ rrr: rrr.duration, rr: rr.duration, tr: tr.duration, pr: pr.duration }), {
-		headers: { 'content-type': 'application/json' },
-	});
+	return new Response(
+		JSON.stringify({ read2: read2.duration, read1: read1.duration, set1: set1.duration, select1: select1.duration }),
+		{
+			headers: { 'content-type': 'application/json' },
+		},
+	);
 }, { port });
