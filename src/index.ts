@@ -31,11 +31,15 @@ serve(async (_req) => {
 	await redis.get<string>('foo');
 	const rr = perf.measure('redis-read');
 
+	perf.measure('redis-read-2');
+	await redis.get<string>('foo');
+	const rrr = perf.measure('redis-read-2');
+
 	perf.measure('planetscale');
 	await conn.execute(product);
 	const pr = perf.measure('planetscale');
 
-	return new Response(JSON.stringify({ rr: rr.duration, tr: tr.duration, pr: pr.duration }), {
+	return new Response(JSON.stringify({ rrr: rrr.duration, rr: rr.duration, tr: tr.duration, pr: pr.duration }), {
 		headers: { 'content-type': 'application/json' },
 	});
 }, { port });
