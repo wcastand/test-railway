@@ -226,7 +226,9 @@
     "https://deno.land/x/upstash_redis@v1.19.3/pkg/types.ts": "f9363a02964f5c2af8f4f054cba2cfde222af8eb9e908c37ca508a6399ac9e29",
     "https://deno.land/x/upstash_redis@v1.19.3/pkg/util.ts": "bda4f5eb90ff82d2443ec8908a376079a44af328ee64390d2e5ee7687a171556",
     "https://deno.land/x/upstash_redis@v1.19.3/version.ts": "fb553d493437bc431a81483e2940d14fc1a31e476128ef89e1e77db317ea4baf",
-    "https://denopkg.com/chiefbiiko/std-encoding@v1.0.0/mod.ts": "4a927e5cd1d9b080d72881eb285b3b94edb6dadc1828aeb194117645f4481ac0"
+    "https://denopkg.com/chiefbiiko/std-encoding@v1.0.0/mod.ts": "4a927e5cd1d9b080d72881eb285b3b94edb6dadc1828aeb194117645f4481ac0",
+    "https://esm.sh/*@planetscale/database@1.4.0": "aa9036c70f840177d06561962a195f21419a3eb345808099d5213d0a6877b8b9",
+    "https://esm.sh/v106/@planetscale/database@1.4.0/X-ZS8q/deno/database.js": "bff5b38e18246005a5cdac6f418869bda01cfab90bffb5259aab120c0876fce2"
   },
   "npm": {
     "specifiers": {

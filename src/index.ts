@@ -1,7 +1,7 @@
 import { serve } from 'https://deno.land/std@0.176.0/http/server.ts';
 import { Redis } from 'https://deno.land/x/upstash_redis@v1.19.3/mod.ts';
 import { Query } from 'https://deno.land/x/sql_builder@v1.9.2/mod.ts';
-import { connect } from 'npm:@planetscale/database@^1.4';
+import { connect } from '@planetscale/database';
 
 const port = parseInt(Deno.env.get('PORT') ?? '8000');
 const redis = Redis.fromEnv();
@@ -17,7 +17,7 @@ serve(async (_req) => {
 	const setRes = [];
 	const uuid = crypto.randomUUID();
 	console.log('set...');
-	for (let i = 0; i < 100; i++) {
+	for (let i = 0; i < 1; i++) {
 		performance.mark('redis-set-1');
 		await redis.set('foo', uuid);
 		performance.mark('redis-set-2');
@@ -26,7 +26,7 @@ serve(async (_req) => {
 
 	const readRes = [];
 	console.log('read...');
-	for (let i = 0; i < 100; i++) {
+	for (let i = 0; i < 1; i++) {
 		performance.mark('redis-read-1');
 		await redis.get<string>('foo');
 		performance.mark('redis-read-2');
@@ -40,7 +40,7 @@ serve(async (_req) => {
 
 	const selectRes = [];
 	console.log('select...');
-	for (let i = 0; i < 100; i++) {
+	for (let i = 0; i < 1; i++) {
 		performance.mark('planetscale-1');
 		await conn.execute(product);
 		performance.mark('planetscale-2');
