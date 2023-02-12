@@ -1,3 +1,5 @@
+import {} from '@planetscale/database';
+
 import { serve } from 'https://deno.land/std@0.176.0/http/server.ts';
 import { Redis } from 'https://deno.land/x/upstash_redis@v1.19.3/mod.ts';
 import { Query } from 'https://deno.land/x/sql_builder@v1.9.2/mod.ts';
