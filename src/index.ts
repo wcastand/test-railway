@@ -22,25 +22,25 @@ serve(async (_req) => {
 	const builder = new Query();
 	const product = builder.table('products').select('*').build();
 
-	performance.mark('redis-set');
+	performance.mark('redis-set-1');
 	await redis.set('foo', crypto.randomUUID());
-	performance.mark('redis-set');
-	const set1 = performance.measure('redis-set');
+	performance.mark('redis-set-2');
+	const set1 = performance.measure('redis-set', 'redis-set-1', 'redis-set-2');
 
-	performance.mark('redis-read');
-	await redis.get<string>('foo');
-	performance.mark('redis-read');
-	const read1 = performance.measure('redis-read');
-
-	performance.mark('redis-read-2');
+	performance.mark('redis-read-1');
 	await redis.get<string>('foo');
 	performance.mark('redis-read-2');
-	const read2 = performance.measure('redis-read-2');
+	const read1 = performance.measure('redis-read', 'redis-read-1', 'redis-read-2');
 
-	performance.mark('planetscale');
+	performance.mark('redis-read-3');
+	await redis.get<string>('foo');
+	performance.mark('redis-read-4');
+	const read2 = performance.measure('redis-read-2', 'redis-read-3', 'redis-read-4');
+
+	performance.mark('planetscale-1');
 	await conn.execute(product);
-	performance.mark('planetscale');
-	const select1 = performance.measure('planetscale');
+	performance.mark('planetscale-2');
+	const select1 = performance.measure('planetscale', 'planetscale-1', 'planetscale-2');
 
 	return new Response(
 		JSON.stringify({ read2: read2.duration, read1: read1.duration, set1: set1.duration, select1: select1.duration }),
