@@ -22,20 +22,24 @@ serve(async (_req) => {
 	const builder = new Query();
 	const product = builder.table('products').select('*').build();
 
-	performance.measure('redis-set');
+	performance.mark('redis-set');
 	await redis.set('foo', crypto.randomUUID());
+	performance.mark('redis-set');
 	const set1 = performance.measure('redis-set');
 
-	performance.measure('redis-read');
+	performance.mark('redis-read');
 	await redis.get<string>('foo');
+	performance.mark('redis-read');
 	const read1 = performance.measure('redis-read');
 
-	performance.measure('redis-read-2');
+	performance.mark('redis-read-2');
 	await redis.get<string>('foo');
+	performance.mark('redis-read-2');
 	const read2 = performance.measure('redis-read-2');
 
-	performance.measure('planetscale');
+	performance.mark('planetscale');
 	await conn.execute(product);
+	performance.mark('planetscale');
 	const select1 = performance.measure('planetscale');
 
 	return new Response(
